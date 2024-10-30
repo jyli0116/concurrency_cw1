@@ -1,0 +1,105 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.13"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "hashsets",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "checks::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-checks-Debug-a70ad553d9fb9c3d217e.json",
+					"name" : "checks",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "demo_coarse_grained::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-demo_coarse_grained-Debug-1d177b3f733e97dd88b4.json",
+					"name" : "demo_coarse_grained",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "demo_refinable::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-demo_refinable-Debug-e9a135e78add21ec1a21.json",
+					"name" : "demo_refinable",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "demo_sequential::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-demo_sequential-Debug-33ce2faa1eb5020caf71.json",
+					"name" : "demo_sequential",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "demo_striped::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-demo_striped-Debug-bc866d0fb30b62519fb3.json",
+					"name" : "demo_striped",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "playground::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-playground-Debug-336fc9fcd92453f5d309.json",
+					"name" : "playground",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/cmake-build-debug",
+		"source" : "C:/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

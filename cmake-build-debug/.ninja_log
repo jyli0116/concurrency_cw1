@@ -1,0 +1,15 @@
+# ninja log v5
+1	1771	7519512006417403	CMakeFiles/demo_coarse_grained.dir/src/benchmark.cc.obj	2ca1d2c42f0ba931
+8	1836	7519512007028887	CMakeFiles/demo_coarse_grained.dir/src/demo_coarse_grained.cc.obj	c857ec35407725f3
+1837	1988	7519512008572689	demo_coarse_grained.exe	e269d358842ba08b
+0	1304	7519516619565888	CMakeFiles/demo_refinable.dir/src/benchmark.cc.obj	579bf9036787c9b3
+8	1414	7519516620692106	CMakeFiles/demo_refinable.dir/src/demo_refinable.cc.obj	f96ee239c7b8e4ae
+1414	1536	7519516621911923	demo_refinable.exe	2a350f2a0d13940b
+7	405	7519516705754341	CMakeFiles/demo_sequential.dir/src/demo_sequential.cc.obj	a24d58ba21b01a71
+0	1150	7519516713178627	CMakeFiles/demo_sequential.dir/src/benchmark.cc.obj	e77e1c6a15273389
+1150	1244	7519516714152141	demo_sequential.exe	c45add9ec4a5903
+1	1109	7519516791618418	CMakeFiles/demo_striped.dir/src/benchmark.cc.obj	43d82762ea539a7c
+7	1226	7519516792780610	CMakeFiles/demo_striped.dir/src/demo_striped.cc.obj	f09eab76366555c2
+1226	1333	7519516793879392	demo_striped.exe	9f3387e21303104c
+1	49	7519516883579669	CMakeFiles/playground.dir/src/playground.cc.obj	5fe63a07903378be
+49	145	7519516884537186	playground.exe	4c0e9ced3c075205

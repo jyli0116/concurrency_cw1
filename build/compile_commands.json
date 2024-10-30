@@ -1,0 +1,72 @@
+[
+{
+  "directory": "/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/build",
+  "command": "/usr/bin/clang++-18  -I\"/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton\" -g -fPIC -Werror -Wall -Wextra -pedantic -Weverything -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-padded -Wno-unsafe-buffer-usage -std=c++20 -o CMakeFiles/checks.dir/src/checks/standalone_coarse_grained.cc.o -c \"/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/src/checks/standalone_coarse_grained.cc\"",
+  "file": "/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/src/checks/standalone_coarse_grained.cc"
+},
+{
+  "directory": "/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/build",
+  "command": "/usr/bin/clang++-18  -I\"/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton\" -g -fPIC -Werror -Wall -Wextra -pedantic -Weverything -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-padded -Wno-unsafe-buffer-usage -std=c++20 -o CMakeFiles/checks.dir/src/checks/standalone_refinable.cc.o -c \"/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/src/checks/standalone_refinable.cc\"",
+  "file": "/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/src/checks/standalone_refinable.cc"
+},
+{
+  "directory": "/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/build",
+  "command": "/usr/bin/clang++-18  -I\"/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton\" -g -fPIC -Werror -Wall -Wextra -pedantic -Weverything -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-padded -Wno-unsafe-buffer-usage -std=c++20 -o CMakeFiles/checks.dir/src/checks/standalone_sequential.cc.o -c \"/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/src/checks/standalone_sequential.cc\"",
+  "file": "/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/src/checks/standalone_sequential.cc"
+},
+{
+  "directory": "/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/build",
+  "command": "/usr/bin/clang++-18  -I\"/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton\" -g -fPIC -Werror -Wall -Wextra -pedantic -Weverything -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-padded -Wno-unsafe-buffer-usage -std=c++20 -o CMakeFiles/checks.dir/src/checks/standalone_striped.cc.o -c \"/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/src/checks/standalone_striped.cc\"",
+  "file": "/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/src/checks/standalone_striped.cc"
+},
+{
+  "directory": "/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/build",
+  "command": "/usr/bin/clang++-18  -I\"/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton\" -g -fPIC -Werror -Wall -Wextra -pedantic -Weverything -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-padded -Wno-unsafe-buffer-usage -std=c++20 -o CMakeFiles/checks.dir/src/checks/all.cc.o -c \"/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/src/checks/all.cc\"",
+  "file": "/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/src/checks/all.cc"
+},
+{
+  "directory": "/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/build",
+  "command": "/usr/bin/clang++-18  -I\"/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton\" -g -fPIE -Werror -Wall -Wextra -pedantic -Weverything -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-padded -Wno-unsafe-buffer-usage -std=c++20 -o CMakeFiles/demo_sequential.dir/src/benchmark.cc.o -c \"/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/src/benchmark.cc\"",
+  "file": "/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/src/benchmark.cc"
+},
+{
+  "directory": "/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/build",
+  "command": "/usr/bin/clang++-18  -I\"/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton\" -g -fPIE -Werror -Wall -Wextra -pedantic -Weverything -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-padded -Wno-unsafe-buffer-usage -std=c++20 -o CMakeFiles/demo_sequential.dir/src/demo_sequential.cc.o -c \"/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/src/demo_sequential.cc\"",
+  "file": "/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/src/demo_sequential.cc"
+},
+{
+  "directory": "/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/build",
+  "command": "/usr/bin/clang++-18  -I\"/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton\" -g -fPIE -Werror -Wall -Wextra -pedantic -Weverything -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-padded -Wno-unsafe-buffer-usage -std=c++20 -o CMakeFiles/demo_coarse_grained.dir/src/benchmark.cc.o -c \"/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/src/benchmark.cc\"",
+  "file": "/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/src/benchmark.cc"
+},
+{
+  "directory": "/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/build",
+  "command": "/usr/bin/clang++-18  -I\"/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton\" -g -fPIE -Werror -Wall -Wextra -pedantic -Weverything -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-padded -Wno-unsafe-buffer-usage -std=c++20 -o CMakeFiles/demo_coarse_grained.dir/src/demo_coarse_grained.cc.o -c \"/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/src/demo_coarse_grained.cc\"",
+  "file": "/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/src/demo_coarse_grained.cc"
+},
+{
+  "directory": "/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/build",
+  "command": "/usr/bin/clang++-18  -I\"/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton\" -g -fPIE -Werror -Wall -Wextra -pedantic -Weverything -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-padded -Wno-unsafe-buffer-usage -std=c++20 -o CMakeFiles/demo_striped.dir/src/benchmark.cc.o -c \"/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/src/benchmark.cc\"",
+  "file": "/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/src/benchmark.cc"
+},
+{
+  "directory": "/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/build",
+  "command": "/usr/bin/clang++-18  -I\"/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton\" -g -fPIE -Werror -Wall -Wextra -pedantic -Weverything -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-padded -Wno-unsafe-buffer-usage -std=c++20 -o CMakeFiles/demo_striped.dir/src/demo_striped.cc.o -c \"/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/src/demo_striped.cc\"",
+  "file": "/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/src/demo_striped.cc"
+},
+{
+  "directory": "/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/build",
+  "command": "/usr/bin/clang++-18  -I\"/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton\" -g -fPIE -Werror -Wall -Wextra -pedantic -Weverything -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-padded -Wno-unsafe-buffer-usage -std=c++20 -o CMakeFiles/demo_refinable.dir/src/benchmark.cc.o -c \"/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/src/benchmark.cc\"",
+  "file": "/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/src/benchmark.cc"
+},
+{
+  "directory": "/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/build",
+  "command": "/usr/bin/clang++-18  -I\"/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton\" -g -fPIE -Werror -Wall -Wextra -pedantic -Weverything -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-padded -Wno-unsafe-buffer-usage -std=c++20 -o CMakeFiles/demo_refinable.dir/src/demo_refinable.cc.o -c \"/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/src/demo_refinable.cc\"",
+  "file": "/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/src/demo_refinable.cc"
+},
+{
+  "directory": "/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/build",
+  "command": "/usr/bin/clang++-18  -I\"/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton\" -g -fPIE -Werror -Wall -Wextra -pedantic -Weverything -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-padded -Wno-unsafe-buffer-usage -std=c++20 -o CMakeFiles/playground.dir/src/playground.cc.o -c \"/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/src/playground.cc\"",
+  "file": "/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/src/playground.cc"
+}
+]

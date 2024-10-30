@@ -1,0 +1,8 @@
+/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/build/CMakeFiles/checks.dir
+/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/build/CMakeFiles/demo_sequential.dir
+/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/build/CMakeFiles/demo_coarse_grained.dir
+/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/build/CMakeFiles/demo_striped.dir
+/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/build/CMakeFiles/demo_refinable.dir
+/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/build/CMakeFiles/playground.dir
+/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/build/CMakeFiles/edit_cache.dir
+/mnt/c/Users/jyli0/General/IMPERIAL/Y3_2425/60007 The Theory and Practise of Concurrency/skeleton/build/CMakeFiles/rebuild_cache.dir
