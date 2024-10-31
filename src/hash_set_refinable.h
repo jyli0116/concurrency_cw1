@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 
+#include <atomic>
 #include <cassert>
 #include <cstddef>
 #include <functional>
@@ -57,9 +58,6 @@ class HashSetRefinable : public HashSetBase<T> {
 
   bool Remove(T elem) final {
     std::shared_lock<std::shared_mutex> resize_lock(resize_mutex_);
-
-    // since dont need ot unlock this early, could also use scoped_lock?
-    // mutexes_[std::hash<T>()(elem) % initial_capacity_].lock();
     std::scoped_lock<std::mutex> scoped_lock(
         mutexes_[std::hash<T>()(elem) % current_capacity_]);
 
@@ -70,7 +68,7 @@ class HashSetRefinable : public HashSetBase<T> {
     std::vector<T>& bucket_ =
         table_.at(std::hash<T>()(elem) % current_capacity_);
 
-    // check if element is already present in bucket if so, remove from
+    // check if element is already present in bucket, remove if so
     auto bucket_elem_ = bucket_.begin();
     while (bucket_elem_ != bucket_.end()) {
       if (*bucket_elem_ == elem) {
@@ -100,13 +98,13 @@ class HashSetRefinable : public HashSetBase<T> {
 
   void Resize() {
     size_t old_capacity = current_capacity_;
-    // Block other operations while resizing
+
     std::lock_guard<std::shared_mutex> resize_lock(resize_mutex_);
     for (std::mutex& mutex : mutexes_) {
       std::scoped_lock<std::mutex> lock(mutex);
     }
 
-    // check if another thread already resized
+    // check if another thread has resized before this thread
     if (old_capacity != current_capacity_) {
       return;
     }
@@ -114,6 +112,7 @@ class HashSetRefinable : public HashSetBase<T> {
     size_t new_capacity = 2 * old_capacity;
     current_capacity_.store(new_capacity);
 
+    // rehash table elements
     std::vector<std::vector<T>> old_table_ = table_;
     table_ = std::vector<std::vector<T>>(new_capacity);
     for (std::vector<T> bucket : old_table_) {
@@ -124,10 +123,8 @@ class HashSetRefinable : public HashSetBase<T> {
       }
     }
 
-    // new mutexes
+    // expand mutexes to new capacity
     mutexes_ = std::vector<std::mutex>(new_capacity);
-
-    //   current_capacity_ = new_capacity_;
   }
 
   // size_t const initial_capacity_;
