@@ -16,9 +16,8 @@ template <typename T>
 class HashSetRefinable : public HashSetBase<T> {
  public:
   explicit HashSetRefinable(size_t initial_capacity)
-      : current_capacity_(initial_capacity), set_size_(0), is_resizing_(false) {
-    table_.reserve(current_capacity_);
-    set_size_.store(0);
+      : current_capacity_(initial_capacity), set_size_(0), {
+    table_.reserve(initial_capacity);
     std::unique_lock<std::shared_mutex> resize_lock(resize_mutex_);
     mutexes_ = std::vector<std::mutex>(current_capacity_);
     for (size_t i = 0; i < current_capacity_; i++) {
@@ -102,14 +101,13 @@ class HashSetRefinable : public HashSetBase<T> {
   void Resize() {
     size_t old_capacity = current_capacity_;
     // Block other operations while resizing
-    std::unique_lock<std::shared_mutex> resize_lock(resize_mutex_);
+    std::lock_guard<std::shared_mutex> resize_lock(resize_mutex_);
     for (std::mutex& mutex : mutexes_) {
       std::scoped_lock<std::mutex> lock(mutex);
     }
 
     // check if another thread already resized
     if (old_capacity != current_capacity_) {
-      // is_resizing_.store(false);
       return;
     }
 
@@ -137,7 +135,6 @@ class HashSetRefinable : public HashSetBase<T> {
   std::vector<std::vector<T>> table_;
   std::vector<std::mutex> mutexes_;
   std::atomic<size_t> set_size_;
-  std::atomic<bool> is_resizing_;
   // wrap in unique lock for resize, wrap in shared lock for read
   std::shared_mutex resize_mutex_;  // Mutex to protect resizing
 };
