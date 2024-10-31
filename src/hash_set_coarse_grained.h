@@ -85,16 +85,14 @@ class HashSetCoarseGrained : public HashSetBase<T> {
   bool Policy() { return set_size_ / initial_capacity_ > 4; }
 
   void Resize() {
-    // TODO: shorten down to one instruction
-    size_t new_capacity_ = initial_capacity_ * 2;
-    initial_capacity_ = new_capacity_;
+    initial_capacity_ *= 2;
 
     std::vector<std::vector<T>> old_table_ = table_;
-    table_ = std::vector<std::vector<T>>(new_capacity_);
+    table_ = std::vector<std::vector<T>>(initial_capacity_);
     for (std::vector<T> bucket : old_table_) {
       for (T elem : bucket) {
         std::vector<T>& curr_bucket_ =
-            table_.at(std::hash<T>()(elem) % new_capacity_);
+            table_.at(std::hash<T>()(elem) % initial_capacity_);
         curr_bucket_.push_back(elem);
       }
     }

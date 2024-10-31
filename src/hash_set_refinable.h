@@ -17,7 +17,7 @@ template <typename T>
 class HashSetRefinable : public HashSetBase<T> {
  public:
   explicit HashSetRefinable(size_t initial_capacity)
-      : current_capacity_(initial_capacity), set_size_(0), {
+      : current_capacity_(initial_capacity), set_size_(0) {
     table_.reserve(initial_capacity);
     std::unique_lock<std::shared_mutex> resize_lock(resize_mutex_);
     mutexes_ = std::vector<std::mutex>(current_capacity_);

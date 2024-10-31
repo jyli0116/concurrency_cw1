@@ -103,16 +103,14 @@ class HashSetStriped : public HashSetBase<T> {
       mutexes_[i].lock();
     }
     if (oldCapacity == current_capacity_.load()) {
-      // TODO: shorten down to one instruction
-      size_t new_capacity_ = current_capacity_ * 2;
-      current_capacity_ = new_capacity_;
+      current_capacity_.store(current_capacity_.load() * 2);
 
       std::vector<std::vector<T>> old_table_ = table_;
-      table_ = std::vector<std::vector<T>>(new_capacity_);
+      table_ = std::vector<std::vector<T>>(current_capacity_);
       for (std::vector<T> bucket : old_table_) {
         for (T elem : bucket) {
           std::vector<T>& curr_bucket_ =
-              table_.at(std::hash<T>()(elem) % new_capacity_);
+              table_.at(std::hash<T>()(elem) % current_capacity_);
           curr_bucket_.push_back(elem);
         }
       }
