@@ -10,9 +10,10 @@
 #include "src/hash_set_base.h"
 
 /*
-we equipped each public function with a scoped lock 
-which will lock itself at function entry point and automatically unlock at exit points 
-by using this, we ensure the synchronisation of the entire public function
+  we equipped each public function with a scoped lock
+  which will lock itself at function entry point and automatically unlock at
+  exit points by using this, we ensure the synchronisation of the entire public
+  function
 */
 template <typename T>
 class HashSetCoarseGrained : public HashSetBase<T> {
