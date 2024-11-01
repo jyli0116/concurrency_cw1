@@ -101,7 +101,6 @@ class HashSetSequential : public HashSetBase<T> {
   // representing the bucket
   size_t initial_capacity_;
   size_t set_size_;
-
   std::vector<std::vector<T>> table_;
 };
 
