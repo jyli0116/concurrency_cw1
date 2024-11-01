@@ -84,7 +84,6 @@ class HashSetSequential : public HashSetBase<T> {
 
   // doubles the capacity of the table
   void Resize() {
-    // TODO: shorten down to one instruction
     initial_capacity_ *= 2;
 
     std::vector<std::vector<T>> old_table_ = table_;
@@ -102,7 +101,7 @@ class HashSetSequential : public HashSetBase<T> {
   // representing the bucket
   size_t initial_capacity_;
   size_t set_size_;
-  // idk why my intellisense isn't recognising std here but
+
   std::vector<std::vector<T>> table_;
 };
 
