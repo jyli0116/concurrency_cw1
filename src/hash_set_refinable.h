@@ -17,16 +17,15 @@ template <typename T>
 class HashSetRefinable : public HashSetBase<T> {
  public:
   explicit HashSetRefinable(size_t initial_capacity)
-      : current_capacity_(initial_capacity), set_size_(0), {
+      : current_capacity_(initial_capacity), set_size_(0) {
     table_.reserve(initial_capacity);
-    std::unique_lock<std::shared_mutex> resize_lock(resize_mutex_);
-    mutexes_ = std::vector<std::mutex>(current_capacity_);
     for (size_t i = 0; i < current_capacity_; i++) {
       table_.push_back(std::vector<T>());
     }
   }
 
   bool Add(T elem) final {
+    // shared lock allows multiple readers and prevents concurrent resizing
     std::shared_lock<std::shared_mutex> resize_lock(resize_mutex_);
     std::unique_lock<std::mutex> lock(
         mutexes_[std::hash<T>()(elem) % current_capacity_]);
@@ -34,7 +33,7 @@ class HashSetRefinable : public HashSetBase<T> {
     std::vector<T>& bucket_ =
         table_.at(std::hash<T>()(elem) % current_capacity_);
 
-    // check if element is already present in bucket
+    // check if element is already present in bucket, add if not
     auto bucket_elem_ = bucket_.begin();
     while (bucket_elem_ != bucket_.end()) {
       if (*bucket_elem_ == elem) {
@@ -42,13 +41,12 @@ class HashSetRefinable : public HashSetBase<T> {
       }
       ++bucket_elem_;
     }
-
-    // if not add to bucket
     set_size_++;
     bucket_.push_back(elem);
 
+    // check if resizing is needed based on load factor
     if (Policy()) {
-      // resize needs all threads unlocked prior to calling it
+      // unlock before resizing to avoid deadlock
       resize_lock.unlock();
       lock.unlock();
       Resize();
@@ -57,8 +55,9 @@ class HashSetRefinable : public HashSetBase<T> {
   }
 
   bool Remove(T elem) final {
+    // reader lock for resizing
     std::shared_lock<std::shared_mutex> resize_lock(resize_mutex_);
-    std::scoped_lock<std::mutex> scoped_lock(
+    std::scoped_lock<std::mutex> lock(
         mutexes_[std::hash<T>()(elem) % current_capacity_]);
 
     if (set_size_.load() == 0) {
@@ -82,8 +81,9 @@ class HashSetRefinable : public HashSetBase<T> {
   }
 
   [[nodiscard]] bool Contains(T elem) final {
+    // reader lock for resizing
     std::shared_lock<std::shared_mutex> resize_lock(resize_mutex_);
-    std::scoped_lock<std::mutex> scoped_lock(
+    std::unique_lock<std::mutex> lock(
         mutexes_[std::hash<T>()(elem) % current_capacity_]);
 
     std::vector<T>& bucket_ =
@@ -99,12 +99,16 @@ class HashSetRefinable : public HashSetBase<T> {
   void Resize() {
     size_t old_capacity = current_capacity_;
 
+    // lightweight guard for automatic unlock
+    // exclusive writer lock for resizing
     std::lock_guard<std::shared_mutex> resize_lock(resize_mutex_);
+
+    // ensure no other thread is modifying any bucket
     for (std::mutex& mutex : mutexes_) {
       std::scoped_lock<std::mutex> lock(mutex);
     }
 
-    // check if another thread has resized before this thread
+    // verify no other resize operation has been performed
     if (old_capacity != current_capacity_) {
       return;
     }
@@ -112,7 +116,7 @@ class HashSetRefinable : public HashSetBase<T> {
     size_t new_capacity = 2 * old_capacity;
     current_capacity_.store(new_capacity);
 
-    // rehash table elements
+    // rehash and redistribute table elements
     std::vector<std::vector<T>> old_table_ = table_;
     table_ = std::vector<std::vector<T>>(new_capacity);
     for (std::vector<T> bucket : old_table_) {
@@ -123,17 +127,16 @@ class HashSetRefinable : public HashSetBase<T> {
       }
     }
 
-    // expand mutexes to new capacity
+    // reinitialize mutexes for new capacity
     mutexes_ = std::vector<std::mutex>(new_capacity);
   }
 
-  // size_t const initial_capacity_;
   std::atomic<size_t> current_capacity_;
   std::vector<std::vector<T>> table_;
   std::vector<std::mutex> mutexes_;
   std::atomic<size_t> set_size_;
-  // wrap in unique lock for resize, wrap in shared lock for read
-  std::shared_mutex resize_mutex_;  // Mutex to protect resizing
+  // allow multiple readers and only one writer for resize
+  std::shared_mutex resize_mutex_;
 };
 
 #endif  // HASH_SET_REFINABLE_H
