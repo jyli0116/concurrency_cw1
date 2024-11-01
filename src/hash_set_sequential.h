@@ -20,7 +20,7 @@ class HashSetSequential : public HashSetBase<T> {
     }
   }
 
-  // Adds element to hashset
+  // adds element to hashset
   bool Add(T elem) final {
     std::vector<T>& bucket_ =
         table_.at(std::hash<T>()(elem) % initial_capacity_);
@@ -45,7 +45,7 @@ class HashSetSequential : public HashSetBase<T> {
     return true;
   }
 
-  // Removes element from hashset
+  // removes element from hashset
   bool Remove(T elem) final {
     if (set_size_ == 0) {
       return false;
@@ -68,14 +68,14 @@ class HashSetSequential : public HashSetBase<T> {
     return false;
   }
 
-  // Check if item contains hashset
+  // check if item contains hashset
   [[nodiscard]] bool Contains(T elem) final {
     std::vector<T>& bucket_ =
         table_.at(std::hash<T>()(elem) % initial_capacity_);
     return std::find(bucket_.begin(), bucket_.end(), elem) != bucket_.end();
   }
 
-  // Returns size of hashset
+  // returns size of hashset
   [[nodiscard]] size_t Size() const final { return set_size_; }
 
  private:

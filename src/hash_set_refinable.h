@@ -13,6 +13,14 @@
 
 #include "src/hash_set_base.h"
 
+/*
+  similar to how mark and owner is used in the book, we use a shared mutex for
+  managing resizing and exclusive mutex for each bucket. By using a shared lock
+  for Add/Remove/Contain and exclusive lock for resizing, we ensure that no
+  other thread is modifying any bucket while resizing is in progress and still
+  allow multiple readers to access the hashset when resizing is not in progress.
+*/
+
 template <typename T>
 class HashSetRefinable : public HashSetBase<T> {
  public:

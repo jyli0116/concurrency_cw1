@@ -87,7 +87,7 @@ class HashSetCoarseGrained : public HashSetBase<T> {
   [[nodiscard]] size_t Size() const final { return set_size_.load(); }
 
  private:
-  // Decides wherther to resize the set
+  // decides whether to resize the set
   bool Policy() { return set_size_ / initial_capacity_.load() > 4; }
 
   void Resize() {
@@ -105,8 +105,8 @@ class HashSetCoarseGrained : public HashSetBase<T> {
   }
 
   /*
-  we use atomic integer value for hashset capacity and size of buckets
-  it is to ensure no race condition when assigning and modifying their values
+    we use atomic integer value for hashset capacity and size of buckets
+    it is to ensure no race condition when assigning and modifying their values
   */
   std::atomic<size_t> initial_capacity_;
   std::atomic<size_t> set_size_;
