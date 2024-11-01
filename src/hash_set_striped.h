@@ -11,6 +11,13 @@
 
 #include "src/hash_set_base.h"
 
+/*
+following the book's guidance
+we equipped each public function (except for Add) with a scoped lock 
+which will lock itself at function entry point and automatically unlock at exit points 
+by using this, we ensure the synchronisation of the entire public function
+*/
+
 template <typename T>
 class HashSetStriped : public HashSetBase<T> {
  public:
@@ -25,6 +32,10 @@ class HashSetStriped : public HashSetBase<T> {
     }
   }
 
+  /*
+  we used mutex lock and unlock functions in Add instead of a scoped lock
+  it is to unlock all mutexes before resizing, whereas a scoped lock can only unlock at exit points
+  */
   bool Add(T elem) final {
     mutexes_[std::hash<T>()(elem) % initial_capacity_].lock();
 
@@ -57,7 +68,6 @@ class HashSetStriped : public HashSetBase<T> {
 
   bool Remove(T elem) final {
     // since dont need ot unlock this early, could also use scoped_lock?
-    // mutexes_[std::hash<T>()(elem) % initial_capacity_].lock();
     std::scoped_lock<std::mutex> scoped_lock(
         mutexes_[std::hash<T>()(elem) % initial_capacity_]);
 
@@ -103,16 +113,14 @@ class HashSetStriped : public HashSetBase<T> {
       mutexes_[i].lock();
     }
     if (oldCapacity == current_capacity_.load()) {
-      // TODO: shorten down to one instruction
-      size_t new_capacity_ = current_capacity_ * 2;
-      current_capacity_ = new_capacity_;
+      current_capacity_.store(current_capacity_.load() * 2);
 
       std::vector<std::vector<T>> old_table_ = table_;
-      table_ = std::vector<std::vector<T>>(new_capacity_);
+      table_ = std::vector<std::vector<T>>(current_capacity_);
       for (std::vector<T> bucket : old_table_) {
         for (T elem : bucket) {
           std::vector<T>& curr_bucket_ =
-              table_.at(std::hash<T>()(elem) % new_capacity_);
+              table_.at(std::hash<T>()(elem) % current_capacity_);
           curr_bucket_.push_back(elem);
         }
       }
@@ -123,9 +131,14 @@ class HashSetStriped : public HashSetBase<T> {
     }
   }
 
+  /*
+  we use atomic integer value for hashset capacity and size of buckets
+  it is to ensure no race condition when assigning and modifying their values
+  */
   size_t const initial_capacity_;
   std::atomic<size_t> current_capacity_;
   std::vector<std::vector<T>> table_;
+  //follows the book's guidance 
   std::mutex* mutexes_;
   std::atomic<size_t> set_size_;
 };

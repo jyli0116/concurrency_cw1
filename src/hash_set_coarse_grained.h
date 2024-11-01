@@ -9,6 +9,11 @@
 
 #include "src/hash_set_base.h"
 
+/*
+we equipped each public function with a scoped lock 
+which will lock itself at function entry point and automatically unlock at exit points 
+by using this, we ensure the synchronisation of the entire public function
+*/
 template <typename T>
 class HashSetCoarseGrained : public HashSetBase<T> {
  public:
@@ -24,7 +29,7 @@ class HashSetCoarseGrained : public HashSetBase<T> {
     std::scoped_lock<std::mutex> scoped_lock(mutex_);
 
     std::vector<T>& bucket_ =
-        table_.at(std::hash<T>()(elem) % initial_capacity_);
+        table_.at(std::hash<T>()(elem) % initial_capacity_.load());
 
     // check if element is already present in bucket
     auto bucket_elem_ = bucket_.begin();
@@ -54,7 +59,7 @@ class HashSetCoarseGrained : public HashSetBase<T> {
     }
 
     std::vector<T>& bucket_ =
-        table_.at(std::hash<T>()(elem) % initial_capacity_);
+        table_.at(std::hash<T>()(elem) % initial_capacity_.load());
 
     // check if element is already present in bucket if so, remove from bucket
     auto bucket_elem_ = bucket_.begin();
@@ -74,7 +79,7 @@ class HashSetCoarseGrained : public HashSetBase<T> {
     std::scoped_lock<std::mutex> scoped_lock(mutex_);
 
     std::vector<T>& bucket_ =
-        table_.at(std::hash<T>()(elem) % initial_capacity_);
+        table_.at(std::hash<T>()(elem) % initial_capacity_.load());
     return std::find(bucket_.begin(), bucket_.end(), elem) != bucket_.end();
   }
 
@@ -82,25 +87,27 @@ class HashSetCoarseGrained : public HashSetBase<T> {
 
  private:
   // Decides wherther to resize the set
-  bool Policy() { return set_size_ / initial_capacity_ > 4; }
+  bool Policy() { return set_size_ / initial_capacity_.load() > 4; }
 
   void Resize() {
-    // TODO: shorten down to one instruction
-    size_t new_capacity_ = initial_capacity_ * 2;
-    initial_capacity_ = new_capacity_;
+    initial_capacity_.store(initial_capacity_.load() * 2);
 
     std::vector<std::vector<T>> old_table_ = table_;
-    table_ = std::vector<std::vector<T>>(new_capacity_);
+    table_ = std::vector<std::vector<T>>(initial_capacity_.load());
     for (std::vector<T> bucket : old_table_) {
       for (T elem : bucket) {
         std::vector<T>& curr_bucket_ =
-            table_.at(std::hash<T>()(elem) % new_capacity_);
+            table_.at(std::hash<T>()(elem) % initial_capacity_.load());
         curr_bucket_.push_back(elem);
       }
     }
   }
 
-  size_t initial_capacity_;
+  /*
+  we use atomic integer value for hashset capacity and size of buckets
+  it is to ensure no race condition when assigning and modifying their values
+  */
+  std::atomic<size_t> initial_capacity_;
   std::atomic<size_t> set_size_;
   std::vector<std::vector<T>> table_;
   std::mutex mutex_;
