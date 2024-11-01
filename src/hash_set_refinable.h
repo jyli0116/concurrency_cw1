@@ -27,6 +27,7 @@ class HashSetRefinable : public HashSetBase<T> {
   explicit HashSetRefinable(size_t initial_capacity)
       : current_capacity_(initial_capacity), set_size_(0) {
     table_.reserve(initial_capacity);
+    mutexes_ = std::vector<std::mutex>(initial_capacity);
     for (size_t i = 0; i < current_capacity_; i++) {
       table_.push_back(std::vector<T>());
     }
@@ -91,7 +92,7 @@ class HashSetRefinable : public HashSetBase<T> {
   [[nodiscard]] bool Contains(T elem) final {
     // reader lock for resizing
     std::shared_lock<std::shared_mutex> resize_lock(resize_mutex_);
-    std::unique_lock<std::mutex> lock(
+    std::scoped_lock<std::mutex> lock(
         mutexes_[std::hash<T>()(elem) % current_capacity_]);
 
     std::vector<T>& bucket_ =
